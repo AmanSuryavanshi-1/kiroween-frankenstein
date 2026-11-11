@@ -1,0 +1,12 @@
+{
+  "version": "1.0",
+  "project": "kiroween-frankenstein",
+  "category": "Frankenstein",
+  "description": "Autonomous AI agent system bridging legacy terminal CLI tooling with reactive generative UI components.",
+  "agent": {
+    "mode": "autonomous",
+    "steering": [
+      ".kiro/steering/default.md"
+    ]
+  }
+}
