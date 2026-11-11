@@ -23,6 +23,11 @@ Developers spend countless hours deciphering cryptic terminal error outputs, bro
 3. **Generative UI Resurrection Dashboard:** Rather than printing more illegible terminal text, Frankenstein renders an aesthetic, interactive dashboard displaying live ANSI telemetry, error diagnostics, and a one-click **"⚡ Apply Patch & Resurrect"** interface.
 4. **Autonomous Re-Execution:** Once the patch is applied, Frankenstein automatically re-executes the pipeline and confirms that all test suites pass.
 
+### 📸 Dashboard Screenshots
+| 1. Intercepting Terminal Crash & AST Autopsy | 2. One-Click Patch Application & Resurrected Pipeline |
+| :---: | :---: |
+| ![Kiro Error Autopsy](../assets/dashboard-autopsy.png) | ![Process Resurrected](../assets/dashboard-resurrected.png) |
+
 ---
 
 ## 🛠️ How We Built It

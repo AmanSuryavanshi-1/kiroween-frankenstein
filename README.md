@@ -53,6 +53,11 @@ npm run serve
 ```
 Open **[http://localhost:3033](http://localhost:3033)** in your browser to inspect live crash interception, select multi-language failure probes (Node, Python, Rust, Go), and trigger one-click generative UI resurrections.
 
+#### 📸 Interactive Dashboard in Action:
+| 1. Intercepting Terminal Crash & AST Autopsy | 2. One-Click Patch Application & Resurrected Pipeline |
+| :---: | :---: |
+| ![Kiro Error Autopsy](assets/dashboard-autopsy.png) | ![Process Resurrected](assets/dashboard-resurrected.png) |
+
 ### 3. Run Automated Unit Tests
 ```bash
 npm test
