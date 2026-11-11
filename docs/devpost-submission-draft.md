@@ -2,7 +2,7 @@
 
 **Hackathon:** [Kiroween 2026](https://kiroween.devpost.com/)  
 **Track:** Frankenstein (*"Stitch together technologies that don't usually work together"*)  
-**GitHub Repository:** `https://github.com/AmanSuryavanshi-1/kiroween-frankenstein` (Pending push)  
+**GitHub Repository:** [https://github.com/AmanSuryavanshi-1/kiroween-frankenstein](https://github.com/AmanSuryavanshi-1/kiroween-frankenstein)  
 **Author:** Aman Suryavanshi ([@amansuryavanshi2002](https://devpost.com/amansuryavanshi2002))
 
 ---
