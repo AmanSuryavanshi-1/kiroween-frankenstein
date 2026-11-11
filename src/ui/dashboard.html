@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎃 Kiroween: Project Frankenstein — Terminal-to-Generative UI Bridge</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap');
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0b0f19; color: #f3f4f6; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .pulse-glow { box-shadow: 0 0 25px rgba(234, 88, 12, 0.25); }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between p-6">
+  <div class="max-w-6xl mx-auto w-full space-y-6">
+    <!-- Header -->
+    <header class="flex items-center justify-between border-b border-gray-800 pb-4">
+      <div class="flex items-center space-x-3">
+        <span class="text-3xl">🎃</span>
+        <div>
+          <h1 class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
+            Frankenstein <span class="text-xs bg-orange-600/30 text-orange-400 border border-orange-500/30 px-2 py-0.5 rounded-full font-mono">KIROWEEN 2026</span>
+          </h1>
+          <p class="text-xs text-gray-400">Archaic Terminal-to-Generative UI Bridge & Self-Healing Pipeline</p>
+        </div>
+      </div>
+      <div class="flex items-center space-x-2">
+        <div id="status-badge" class="flex items-center space-x-1.5 bg-emerald-950/60 text-emerald-400 border border-emerald-800/60 text-xs px-2.5 py-1 rounded-full mono">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>AGENT LIVE</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Grid -->
+    <main class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <!-- Left: Archaic Terminal Stream (The "Dead" Tech) -->
+      <section class="lg:col-span-6 bg-gray-950 border border-gray-800 rounded-xl overflow-hidden flex flex-col shadow-2xl">
+        <div class="bg-gray-900/80 px-4 py-2.5 border-b border-gray-800 flex items-center justify-between">
+          <span class="text-xs mono text-gray-400 flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-red-500/80 inline-block"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80 inline-block"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-green-500/80 inline-block"></span>
+            VT100 ANSI Pipe (TTY Stream)
+          </span>
+          <span class="text-[10px] text-gray-500 mono">FD 1 & 2 INTERCEPT</span>
+        </div>
+        <div class="p-4 bg-black/90 flex-1 overflow-y-auto max-h-[380px] mono text-xs leading-relaxed space-y-1" id="terminal-content">
+          <div class="text-gray-500">// Intercepting command: node broken_service.js</div>
+          <div class="text-gray-400">> Initializing Frankenstein daemon on port 4040...</div>
+          <div class="text-red-400 font-bold">> TypeError: Cannot read properties of undefined (reading 'token')</div>
+          <div class="text-red-500/80">    at authenticateUser (/app/src/auth.ts:42:18)</div>
+          <div class="text-red-500/80">    at processTicksAndRejections (node:internal/process/task_queues:95:5)</div>
+          <div class="text-red-500 font-bold bg-red-950/20 px-2 py-1 rounded mt-2 border border-red-900/40">✖ Process exited with code 1. Pipe broken.</div>
+        </div>
+      </section>
+
+      <!-- Right: Modern Generative UI Resurrection Card (The "Living" Tech) -->
+      <section class="lg:col-span-6 space-y-4">
+        <div class="bg-gradient-to-br from-gray-900 to-gray-950 border border-orange-500/30 rounded-xl p-5 pulse-glow space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+              <span class="text-lg">⚡</span>
+              <h2 class="text-sm font-bold text-white tracking-wide uppercase">Kiro Resurrection Autopsy</h2>
+            </div>
+            <span class="text-xs bg-red-500/20 text-red-300 border border-red-500/30 px-2 py-0.5 rounded mono">CRITICAL RECOVERY</span>
+          </div>
+
+          <div class="space-y-2 text-xs">
+            <div class="flex justify-between py-1 border-b border-gray-800">
+              <span class="text-gray-400">Target File:</span>
+              <span class="mono text-orange-300 font-semibold">/app/src/auth.ts:42</span>
+            </div>
+            <div class="flex justify-between py-1 border-b border-gray-800">
+              <span class="text-gray-400">Exception Signature:</span>
+              <span class="mono text-red-400">TypeError (Null Pointer Dereference)</span>
+            </div>
+            <div class="flex justify-between py-1 border-b border-gray-800">
+              <span class="text-gray-400">Self-Healing Confidence:</span>
+              <span class="mono text-emerald-400 font-bold">96.4%</span>
+            </div>
+          </div>
+
+          <!-- Diff View -->
+          <div class="space-y-1.5">
+            <span class="text-[11px] text-gray-400 font-semibold uppercase tracking-wider">Proposed Resurrection Patch</span>
+            <div class="bg-black/80 rounded-lg p-3 mono text-xs border border-gray-800 space-y-1">
+              <div class="text-red-400/80 line-through">-  const token = req.headers['authorization'].split(' ')[1];</div>
+              <div class="text-emerald-400 font-bold">+  const authHeader = req.headers['authorization'];</div>
+              <div class="text-emerald-400 font-bold">+  const token = authHeader?.startsWith('Bearer ') ? authHeader.split(' ')[1] : null;</div>
+            </div>
+          </div>
+
+          <button id="apply-btn" class="w-full bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white font-bold py-2.5 px-4 rounded-lg shadow-lg flex items-center justify-center space-x-2 transition-all">
+            <span>⚡ Apply Patch & Resurrect Process</span>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-800/80 pt-4 flex items-center justify-between text-xs text-gray-500">
+      <span>Kiroween 2026 Submission Track: <strong class="text-gray-300">Frankenstein</strong></span>
+      <span>Author: <strong class="text-gray-300">Aman Suryavanshi</strong></span>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('apply-btn').addEventListener('click', () => {
+      const btn = document.getElementById('apply-btn');
+      btn.innerHTML = '<span>✅ Process Resurrected! Running test suite...</span>';
+      btn.classList.remove('from-orange-600', 'to-amber-600');
+      btn.classList.add('from-emerald-600', 'to-teal-600');
+      
+      const term = document.getElementById('terminal-content');
+      term.innerHTML += '<div class="text-emerald-400 mt-2 font-bold">> [Frankenstein Interceptor] Patch applied to /app/src/auth.ts:42</div>';
+      term.innerHTML += '<div class="text-emerald-400">> Restarting process... Process healthy. Tests: 12 passed.</div>';
+    });
+  </script>
+</body>
+</html>

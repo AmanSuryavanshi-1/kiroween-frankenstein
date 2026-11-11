@@ -1,0 +1,35 @@
+{
+  "name": "kiroween-frankenstein",
+  "version": "1.0.0",
+  "description": "Terminal-to-Generative-UI Self-Healing Pipeline for Kiroween 2026",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts",
+    "demo": "tsx src/demo.ts",
+    "serve": "tsx src/server.ts"
+  },
+  "keywords": [
+    "kiro",
+    "kiroween",
+    "terminal",
+    "generative-ui",
+    "self-healing",
+    "agent"
+  ],
+  "author": "Aman Suryavanshi",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "express": "^4.21.1",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.9.0",
+    "@types/ws": "^8.5.13",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  }
+}
