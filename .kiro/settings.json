@@ -7,6 +7,10 @@
     "mode": "autonomous",
     "steering": [
       ".kiro/steering/default.md"
+    ],
+    "hooks": [
+      ".kiro/hooks/autopsy-verification.json",
+      ".kiro/hooks/resurrection-healthcheck.json"
     ]
   }
 }

@@ -1,0 +1,8 @@
+{
+  "name": "resurrection-healthcheck",
+  "version": "1.0",
+  "trigger": "pre-commit",
+  "command": "npm run demo",
+  "timeout": 10000,
+  "description": "Verifies that the autonomous 84ms CLI resurrection loop executes and returns Exit 0."
+}

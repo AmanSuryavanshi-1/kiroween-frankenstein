@@ -1,0 +1,8 @@
+{
+  "name": "autopsy-verification",
+  "version": "1.0",
+  "trigger": "post-edit",
+  "command": "npm test",
+  "timeout": 15000,
+  "description": "Validates multi-language error autopsy parsing against Node, Python, Rust, and Go crash signatures on every code change."
+}
