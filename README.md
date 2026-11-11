@@ -36,7 +36,7 @@ When legacy terminal commands crash or throw obscure stack traces, Frankenstein 
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/amansuryavanshi/kiroween-frankenstein.git
+   git clone https://github.com/AmanSuryavanshi-1/kiroween-frankenstein.git
    cd kiroween-frankenstein
    ```
 2. Open with Kiro IDE or run via Kiro CLI.
