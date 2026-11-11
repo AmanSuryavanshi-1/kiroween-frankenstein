@@ -141,11 +141,12 @@ const server = http.createServer((req, res) => {
     return res.end();
   }
 
-  // Static Dashboard
-  if (req.method === 'GET' && (req.url === '/' || req.url === '/index.html')) {
+  // Static Dashboard (Supports GET and HEAD)
+  if ((req.method === 'GET' || req.method === 'HEAD') && (req.url === '/' || req.url === '/index.html')) {
     const htmlPath = path.join(UI_DIR, 'dashboard.html');
     if (fs.existsSync(htmlPath)) {
       res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+      if (req.method === 'HEAD') return res.end();
       return res.end(fs.readFileSync(htmlPath));
     }
   }
