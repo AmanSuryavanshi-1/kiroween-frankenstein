@@ -7,8 +7,8 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "dev": "tsx src/index.ts",
-    "demo": "tsx src/demo.ts",
-    "serve": "tsx src/server.ts"
+    "demo": "node src/demo.js",
+    "serve": "node src/serve.js"
   },
   "keywords": [
     "kiro",
