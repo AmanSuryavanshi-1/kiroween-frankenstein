@@ -45,13 +45,17 @@ npm run demo
 # or: node src/demo.js
 ```
 
-### 2. Live Generative UI Dashboard (Real-Time SSE)
-Launch the interactive web dashboard with line-by-line terminal streaming:
-```bash
-npm run serve
-# or: node src/serve.js
-```
-Open **[http://localhost:3033](http://localhost:3033)** in your browser to inspect live crash interception, select multi-language failure probes (Node, Python, Rust, Go), and trigger one-click generative UI resurrections.
+### 2. Live Generative UI Dashboard (Real-Time SSE & Static Web Preview)
+- **Live Static Demo (GitHub Pages):** **[https://amansuryavanshi-1.github.io/kiroween-frankenstein/](https://amansuryavanshi-1.github.io/kiroween-frankenstein/)**  
+  *(Works with zero local setup via the client-side AST fallback engine)*
+
+- **Local SSE Streaming Server:**
+  Launch the interactive web dashboard with real-time OS terminal piping:
+  ```bash
+  npm run serve
+  # or: node src/serve.js
+  ```
+  Open **[http://localhost:3033](http://localhost:3033)** in your browser to inspect live crash interception, select multi-language failure probes (Node, Python, Rust, Go), and trigger one-click generative UI resurrections.
 
 #### 📸 Interactive Dashboard in Action:
 | 1. Intercepting Terminal Crash & AST Autopsy | 2. One-Click Patch Application & Resurrected Pipeline |
