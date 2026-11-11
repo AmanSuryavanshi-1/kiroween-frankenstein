@@ -8,7 +8,8 @@
     "start": "node dist/index.js",
     "dev": "tsx src/index.ts",
     "demo": "node src/demo.js",
-    "serve": "node src/serve.js"
+    "serve": "node src/serve.js",
+    "test": "node --test test/*.test.js"
   },
   "keywords": [
     "kiro",

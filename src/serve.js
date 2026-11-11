@@ -68,27 +68,10 @@ function parseAutopsy(stderr, stdout, command = '') {
     };
   }
 
-  // 3. Python Exceptions
-  const pyMatch = fullLog.match(/([a-zA-Z]+Error):\s*(.+)/);
-  const pyFileMatch = fullLog.match(/File "([^"]+)", line (\d+)/);
-  if (pyMatch && (fullLog.includes('Traceback') || pyMatch[1].endsWith('Error'))) {
-    return {
-      runtime: 'Python 3.x',
-      errorType: pyMatch[1],
-      summary: pyMatch[2],
-      targetFile: pyFileMatch ? `${pyFileMatch[1]}:${pyFileMatch[2]}` : 'pipeline.py:42',
-      confidence: '98.4%',
-      patch: [
-        `- tensor_input = np.reshape(batch, (None, 128))`,
-        `+ tensor_input = np.reshape(batch, (-1, 512)) # [Kiro]: Aligned tensor dimensions`
-      ]
-    };
-  }
-
-  // 4. Node.js / JavaScript / TypeScript
+  // 3. Node.js / JavaScript / TypeScript (Checked before Python to prevent generic Error collision)
   const nodeMatch = fullLog.match(/(TypeError|ReferenceError|SyntaxError|RangeError):\s*(.+)/);
   const nodeFileMatch = fullLog.match(/([a-zA-Z0-9_\-\/]+\.(?:ts|js)):(\d+)/);
-  if (nodeMatch) {
+  if (nodeMatch && (fullLog.includes(' at ') || nodeFileMatch || !fullLog.includes('Traceback'))) {
     return {
       runtime: 'Node.js / V8',
       errorType: nodeMatch[1],
@@ -98,6 +81,23 @@ function parseAutopsy(stderr, stdout, command = '') {
       patch: [
         "- const userContext = undefined; if (!userContext.token) ...",
         "+ const userContext = { token: 'kiroween-auth-verified' }; if (userContext.token) ... // [Kiro]: Resurrected context"
+      ]
+    };
+  }
+
+  // 4. Python Exceptions
+  const pyMatch = fullLog.match(/([a-zA-Z]+Error):\s*(.+)/);
+  const pyFileMatch = fullLog.match(/File "([^"]+)", line (\d+)/);
+  if (pyMatch && (fullLog.includes('Traceback') || pyFileMatch)) {
+    return {
+      runtime: 'Python 3.x',
+      errorType: pyMatch[1],
+      summary: pyMatch[2],
+      targetFile: pyFileMatch ? `${pyFileMatch[1]}:${pyFileMatch[2]}` : 'pipeline.py:42',
+      confidence: '98.4%',
+      patch: [
+        "- tensor_input = np.reshape(batch, (None, 128))",
+        "+ tensor_input = np.reshape(batch, (-1, 512)) # [Kiro]: Aligned tensor dimensions"
       ]
     };
   }
