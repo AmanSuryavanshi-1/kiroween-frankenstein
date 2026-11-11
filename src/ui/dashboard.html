@@ -23,13 +23,13 @@
           <h1 class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
             Frankenstein <span class="text-xs bg-orange-600/30 text-orange-400 border border-orange-500/30 px-2 py-0.5 rounded-full font-mono">KIROWEEN 2026</span>
           </h1>
-          <p class="text-xs text-gray-400">Archaic Terminal-to-Generative UI Bridge & Autonomous Self-Healing Pipeline</p>
+          <p class="text-xs text-gray-400">Archaic Terminal-to-Generative UI Bridge & Autonomous Multi-Language Self-Healing Pipeline</p>
         </div>
       </div>
       <div class="flex items-center space-x-2">
         <div id="status-badge" class="flex items-center space-x-1.5 bg-emerald-950/60 text-emerald-400 border border-emerald-800/60 text-xs px-2.5 py-1 rounded-full mono">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span>AGENT LIVE</span>
+          <span id="badge-live-text">SSE STREAM ACTIVE</span>
         </div>
       </div>
     </header>
@@ -41,27 +41,35 @@
           <input type="text" id="cmd-input" 
             value="node -e &quot;console.log('Booting microservice...'); const auth = undefined; if (!auth.token) throw new TypeError('Cannot read properties of undefined (reading \'token\')');&quot;"
             class="w-full bg-black/80 border border-gray-700 rounded-lg px-3 py-2 mono text-xs text-gray-200 focus:outline-none focus:border-orange-500 placeholder-gray-500" 
-            placeholder="Enter terminal command..." />
+            placeholder="Enter terminal command (e.g. node, python, rustc, go, bash)..." />
         </div>
         <button id="run-btn" class="bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs px-4 py-2 rounded-lg mono flex items-center justify-center space-x-1.5 transition-all">
-          <span>⚡ Run Probe</span>
+          <span>⚡ Stream Probe</span>
         </button>
       </div>
 
-      <!-- Quick Preset Chips -->
+      <!-- Multi-Language Quick Preset Chips -->
       <div class="flex flex-wrap items-center gap-2 text-xs">
-        <span class="text-gray-500 mono text-[11px]">Presets:</span>
+        <span class="text-gray-500 mono text-[11px]">Multi-Language Presets:</span>
         <button class="preset-chip bg-gray-800 hover:bg-gray-700 text-gray-300 px-2.5 py-1 rounded mono text-[11px] border border-gray-700 transition"
-          data-cmd="node -e &quot;console.log('Booting microservice...'); const auth = undefined; if (!auth.token) throw new TypeError('Cannot read properties of undefined (reading \'token\')');&quot;">
-          💥 TypeError (Node.js)
+          data-cmd="node -e &quot;console.log('Starting auth...'); const auth = undefined; if (!auth.token) throw new TypeError('Cannot read properties of undefined (reading \'token\')');&quot;">
+          💥 Node.js (TypeError)
         </button>
         <button class="preset-chip bg-gray-800 hover:bg-gray-700 text-gray-300 px-2.5 py-1 rounded mono text-[11px] border border-gray-700 transition"
-          data-cmd="python -c &quot;print('Initializing model pipeline...'); raise ValueError('Invalid input tensor dimension: expected (None, 512), received (None, 128)')&quot;">
-          🐍 ValueError (Python)
+          data-cmd="python -c &quot;print('Tensor processing...'); raise ValueError('Invalid input tensor dimension: expected (None, 512), received (None, 128)')&quot;">
+          🐍 Python (ValueError)
         </button>
         <button class="preset-chip bg-gray-800 hover:bg-gray-700 text-gray-300 px-2.5 py-1 rounded mono text-[11px] border border-gray-700 transition"
-          data-cmd="node -e &quot;console.log('Starting healthcheck service...'); console.log('HTTP 200 OK — Handshake valid. 14/14 tests green.'); process.exit(0);&quot;">
-          ✨ Healthy Service (Exit 0)
+          data-cmd="node -e &quot;console.error('error[E0596]: cannot borrow immutable local variable data as mutable\n  --> src/main.rs:18:9'); process.exit(101);&quot;">
+          🦀 Rust (Borrow Checker)
+        </button>
+        <button class="preset-chip bg-gray-800 hover:bg-gray-700 text-gray-300 px-2.5 py-1 rounded mono text-[11px] border border-gray-700 transition"
+          data-cmd="node -e &quot;console.error('panic: runtime error: invalid memory address or nil pointer dereference\n[signal SIGSEGV: segmentation violation code=0x1 addr=0x0 pc=0x498a12]\ngoroutine 1 [running]:\nmain.processRequest(0x0)\n\tmain.go:35 +0x32'); process.exit(2);&quot;">
+          🐹 Go (Nil Pointer Panic)
+        </button>
+        <button class="preset-chip bg-gray-800 hover:bg-gray-700 text-gray-300 px-2.5 py-1 rounded mono text-[11px] border border-gray-700 transition"
+          data-cmd="node -e &quot;console.log('Healthcheck verified.'); console.log('HTTP 200 OK — Handshake valid. 14/14 tests green.'); process.exit(0);&quot;">
+          ✨ Pipeline Green (Exit 0)
         </button>
       </div>
     </div>
@@ -75,13 +83,12 @@
             <span class="w-2.5 h-2.5 rounded-full bg-red-500/80 inline-block"></span>
             <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80 inline-block"></span>
             <span class="w-2.5 h-2.5 rounded-full bg-green-500/80 inline-block"></span>
-            VT100 ANSI Pipe (TTY Stream)
+            VT100 Live Stream (Server-Sent Events)
           </span>
           <span class="text-[10px] text-gray-500 mono" id="terminal-latency">READY</span>
         </div>
         <div class="p-4 bg-black/90 flex-1 overflow-y-auto max-h-[380px] mono text-xs leading-relaxed space-y-1.5" id="terminal-content">
-          <div class="text-gray-500">// Intercepting command... click "Run Probe" or select a preset above.</div>
-          <div class="text-gray-400">> Standing by on pipes FD 1 (stdout) and FD 2 (stderr)...</div>
+          <div class="text-gray-500">// Connecting to SSE stream... Click "Stream Probe" above.</div>
         </div>
       </section>
 
@@ -97,6 +104,10 @@
           </div>
 
           <div class="space-y-2 text-xs">
+            <div class="flex justify-between py-1 border-b border-gray-800">
+              <span class="text-gray-400">Runtime:</span>
+              <span id="card-runtime" class="mono text-orange-400 font-semibold">Node.js / V8</span>
+            </div>
             <div class="flex justify-between py-1 border-b border-gray-800">
               <span class="text-gray-400">Target Seam:</span>
               <span id="card-target" class="mono text-orange-300 font-semibold">src/auth.ts:42</span>
@@ -140,6 +151,7 @@
     const term = document.getElementById('terminal-content');
     const latencyEl = document.getElementById('terminal-latency');
     const card = document.getElementById('autopsy-card');
+    const cardRuntime = document.getElementById('card-runtime');
     const cardTarget = document.getElementById('card-target');
     const cardSig = document.getElementById('card-signature');
     const cardConf = document.getElementById('card-confidence');
@@ -147,77 +159,101 @@
     const badgeSev = document.getElementById('badge-severity');
     const applyBtn = document.getElementById('apply-btn');
 
-    // Preset chip selector
+    let currentEventSource = null;
+
+    // Preset chips
     document.querySelectorAll('.preset-chip').forEach(btn => {
       btn.addEventListener('click', () => {
         cmdInput.value = btn.getAttribute('data-cmd');
-        executeCommand();
+        streamCommand();
       });
     });
 
-    runBtn.addEventListener('click', executeCommand);
+    runBtn.addEventListener('click', streamCommand);
 
-    async function executeCommand() {
+    function streamCommand() {
       const command = cmdInput.value.trim();
       if (!command) return;
 
-      term.innerHTML = `<div class="text-gray-500">// Executing probe: ${command}</div>`;
-      latencyEl.innerText = 'EXECUTING...';
-
-      try {
-        const res = await fetch('/api/execute', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ command })
-        });
-        const data = await res.json();
-        const r = data.result;
-
-        latencyEl.innerText = `${r.ms}ms (EXIT ${r.code})`;
-
-        if (r.stdout) {
-          term.innerHTML += `<div class="text-gray-300">${escapeHtml(r.stdout.trim())}</div>`;
-        }
-        if (r.stderr) {
-          term.innerHTML += `<div class="text-red-400 font-bold">${escapeHtml(r.stderr.trim())}</div>`;
-        }
-
-        if (r.code !== 0 && data.autopsy) {
-          const a = data.autopsy;
-          term.innerHTML += `<div class="text-red-500 font-bold bg-red-950/20 px-2 py-1 rounded mt-2 border border-red-900/40">✖ Process exited with code ${r.code}. Pipe intercepted.</div>`;
-          
-          card.classList.remove('green-glow');
-          card.classList.add('pulse-glow');
-          badgeSev.className = 'text-xs bg-red-500/20 text-red-300 border border-red-500/30 px-2 py-0.5 rounded mono';
-          badgeSev.innerText = 'CRITICAL RECOVERY';
-          
-          cardTarget.innerText = a.targetFile;
-          cardSig.innerText = `${a.errorType}: ${a.summary.slice(0, 45)}...`;
-          cardConf.innerText = a.confidence;
-
-          diffBox.innerHTML = a.patch.map((line, idx) => {
-            const isDel = line.startsWith('-');
-            return `<div class="${isDel ? 'text-red-400/80 line-through' : 'text-emerald-400 font-bold'}">${escapeHtml(line)}</div>`;
-          }).join('');
-
-          applyBtn.style.display = 'flex';
-          applyBtn.innerHTML = '<span>⚡ Apply Patch & Resurrect Process</span>';
-          applyBtn.className = 'w-full bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white font-bold py-2.5 px-4 rounded-lg shadow-lg flex items-center justify-center space-x-2 transition-all';
-        } else {
-          term.innerHTML += `<div class="text-emerald-400 font-bold bg-emerald-950/20 px-2 py-1 rounded mt-2 border border-emerald-900/40">✔ Process healthy. Exit 0.</div>`;
-          card.classList.remove('pulse-glow');
-          card.classList.add('green-glow');
-          badgeSev.className = 'text-xs bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2 py-0.5 rounded mono';
-          badgeSev.innerText = 'PIPELINE GREEN';
-          cardSig.innerText = 'Zero Faults Detected';
-          cardTarget.innerText = 'All Modules Verified';
-          cardConf.innerText = '100%';
-          diffBox.innerHTML = '<div class="text-emerald-400">// Invariants satisfied. No patches required.</div>';
-          applyBtn.style.display = 'none';
-        }
-      } catch (err) {
-        term.innerHTML += `<div class="text-red-500">Error connecting to Frankenstein daemon: ${err.message}</div>`;
+      if (currentEventSource) {
+        currentEventSource.close();
       }
+
+      term.innerHTML = `<div class="text-gray-500">// [SSE Stream Opened]: ${escapeHtml(command)}</div>`;
+      latencyEl.innerText = 'STREAMING...';
+
+      const sseUrl = `/api/stream?command=${encodeURIComponent(command)}`;
+      currentEventSource = new EventSource(sseUrl);
+
+      currentEventSource.onmessage = (event) => {
+        try {
+          const payload = JSON.parse(event.data);
+          
+          if (payload.type === 'stdout' && payload.text) {
+            term.innerHTML += `<div class="text-gray-300">${escapeHtml(payload.text.trim())}</div>`;
+            term.scrollTop = term.scrollHeight;
+          }
+
+          if (payload.type === 'stderr' && payload.text) {
+            term.innerHTML += `<div class="text-red-400 font-bold">${escapeHtml(payload.text.trim())}</div>`;
+            term.scrollTop = term.scrollHeight;
+          }
+
+          if (payload.type === 'end') {
+            latencyEl.innerText = `${payload.durationMs}ms (EXIT ${payload.code})`;
+            currentEventSource.close();
+            currentEventSource = null;
+
+            if (payload.code !== 0 && payload.autopsy) {
+              const a = payload.autopsy;
+              term.innerHTML += `<div class="text-red-500 font-bold bg-red-950/20 px-2 py-1 rounded mt-2 border border-red-900/40">✖ Process exited with code ${payload.code}. Intercepted by Frankenstein.</div>`;
+              term.scrollTop = term.scrollHeight;
+
+              card.classList.remove('green-glow');
+              card.classList.add('pulse-glow');
+              badgeSev.className = 'text-xs bg-red-500/20 text-red-300 border border-red-500/30 px-2 py-0.5 rounded mono';
+              badgeSev.innerText = 'CRITICAL RECOVERY';
+              
+              cardRuntime.innerText = a.runtime || 'Native';
+              cardTarget.innerText = a.targetFile;
+              cardSig.innerText = `${a.errorType}: ${a.summary.slice(0, 45)}...`;
+              cardConf.innerText = a.confidence;
+
+              diffBox.innerHTML = a.patch.map(line => {
+                const isDel = line.startsWith('-');
+                return `<div class="${isDel ? 'text-red-400/80 line-through' : 'text-emerald-400 font-bold'}">${escapeHtml(line)}</div>`;
+              }).join('');
+
+              applyBtn.style.display = 'flex';
+              applyBtn.innerHTML = '<span>⚡ Apply Patch & Resurrect Process</span>';
+              applyBtn.className = 'w-full bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white font-bold py-2.5 px-4 rounded-lg shadow-lg flex items-center justify-center space-x-2 transition-all';
+            } else {
+              term.innerHTML += `<div class="text-emerald-400 font-bold bg-emerald-950/20 px-2 py-1 rounded mt-2 border border-emerald-900/40">✔ Process healthy. Exit 0.</div>`;
+              term.scrollTop = term.scrollHeight;
+
+              card.classList.remove('pulse-glow');
+              card.classList.add('green-glow');
+              badgeSev.className = 'text-xs bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2 py-0.5 rounded mono';
+              badgeSev.innerText = 'PIPELINE GREEN';
+              cardRuntime.innerText = 'Verified';
+              cardSig.innerText = 'Zero Faults Detected';
+              cardTarget.innerText = 'All Modules Passed';
+              cardConf.innerText = '100%';
+              diffBox.innerHTML = '<div class="text-emerald-400">// Invariants satisfied. No patches required.</div>';
+              applyBtn.style.display = 'none';
+            }
+          }
+        } catch (e) {
+          console.error('SSE JSON error', e);
+        }
+      };
+
+      currentEventSource.onerror = () => {
+        if (currentEventSource) {
+          currentEventSource.close();
+          currentEventSource = null;
+        }
+      };
     }
 
     applyBtn.addEventListener('click', () => {
@@ -227,7 +263,8 @@
       
       term.innerHTML += '<div class="text-emerald-400 mt-2 font-bold">> [Frankenstein Interceptor] Applying synthetic patch to target seam...</div>';
       term.innerHTML += '<div class="text-emerald-400">> Restarting process... Process healthy. Handshake verified. Tests: 14 passed.</div>';
-      
+      term.scrollTop = term.scrollHeight;
+
       card.classList.remove('pulse-glow');
       card.classList.add('green-glow');
       badgeSev.className = 'text-xs bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2 py-0.5 rounded mono';
@@ -238,8 +275,8 @@
       return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     }
 
-    // Auto-run first probe on load
-    executeCommand();
+    // Auto-stream first probe on load
+    streamCommand();
   </script>
 </body>
 </html>
